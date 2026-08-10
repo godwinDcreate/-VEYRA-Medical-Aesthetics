@@ -1,12 +1,27 @@
 # VEYRA Medical Aesthetics — Website System
 
-Premium MedSpa website **and** reusable multi-tenant website system.
+Premium **Liquid Glass** MedSpa website **and** reusable multi-tenant website system.
 
 > **Build once. Configure. Improve. Repeat.**
 
 Portfolio / proof-of-concept for an AI-Native Website Expert role at Forever Booked.
 
 **VEYRA is fictional.** All providers, testimonials, addresses, and business details are demo content — not a real medical practice.
+
+---
+
+## Design language
+
+Luxury medical aesthetics × editorial fashion × liquid glass × soft wellness × Apple-like spatial design.
+
+- Floating glass pill navigation
+- Layered ivory / champagne / sage atmosphere with slow liquid blobs
+- Thin translucent glass surfaces (`glass-light` → `glass-strong` / `glass-dark`)
+- Multi-step luxury consultation booking
+- Intelligent concierge AI Treatment Guide (not a chatbot UI)
+- Desktop-only subtle custom cursor (disabled on touch + reduced motion)
+
+Glass is used strategically — typography and photography lead; glass enhances.
 
 ---
 

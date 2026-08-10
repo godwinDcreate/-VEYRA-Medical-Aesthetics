@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import { Menu, X } from 'lucide-react'
+import { motion, AnimatePresence, useReducedMotion } from 'framer-motion'
 import { useMedSpa } from '@/context/MedSpaContext'
 import { medSpaOptions, type MedSpaId } from '@/config/medspa'
 
@@ -8,9 +9,10 @@ export function Header() {
   const { config, medSpaId, setMedSpaId } = useMedSpa()
   const [open, setOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+  const reduce = useReducedMotion()
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 12)
+    const onScroll = () => setScrolled(window.scrollY > 24)
     onScroll()
     window.addEventListener('scroll', onScroll, { passive: true })
     return () => window.removeEventListener('scroll', onScroll)
@@ -24,32 +26,36 @@ export function Header() {
   }, [open])
 
   return (
-    <header
-      className={`sticky top-0 z-50 transition-[background,box-shadow,backdrop-filter] duration-300 ${
-        scrolled || open
-          ? 'border-b border-border/80 bg-background/90 shadow-sm backdrop-blur-md'
-          : 'bg-transparent'
-      }`}
-    >
-      <div className="section-pad">
-        <div className="container-wide flex h-16 items-center justify-between gap-4 sm:h-[4.25rem]">
-          <Link to="/" className="group flex flex-col leading-none" onClick={() => setOpen(false)}>
-            <span className="font-display text-2xl tracking-[0.08em] text-espresso sm:text-[1.65rem]">
+    <header className="pointer-events-none sticky top-0 z-50 section-pad pt-4 sm:pt-5">
+      <div className="container-wide flex justify-center">
+        <motion.div
+          className={`pointer-events-auto glass-nav glass-reflect flex w-full max-w-5xl items-center justify-between gap-3 rounded-full px-3 py-2 transition-[background,box-shadow,border-color] duration-500 sm:px-4 sm:py-2.5 ${
+            scrolled || open ? 'glass-nav-scrolled' : ''
+          }`}
+          initial={reduce ? false : { y: -16, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+        >
+          <Link
+            to="/"
+            className="flex shrink-0 items-center rounded-full px-3 py-1.5 transition hover:bg-white/25"
+            onClick={() => setOpen(false)}
+          >
+            <span className="font-display text-xl tracking-[0.14em] text-espresso sm:text-2xl">
               {config.brand.logoText ?? config.brand.shortName}
-            </span>
-            <span className="mt-0.5 text-[0.65rem] uppercase tracking-[0.22em] text-muted-foreground">
-              {config.brand.name.includes('Medical') ? 'Medical Aesthetics' : 'Aesthetics'}
             </span>
           </Link>
 
-          <nav className="hidden items-center gap-7 lg:flex" aria-label="Primary">
+          <nav className="hidden items-center gap-1 lg:flex" aria-label="Primary">
             {config.navigation.map((item) => (
               <NavLink
                 key={item.href}
                 to={item.href}
                 className={({ isActive }) =>
-                  `text-sm tracking-wide transition-colors ${
-                    isActive ? 'text-espresso' : 'text-secondary hover:text-espresso'
+                  `rounded-full px-3.5 py-2 text-sm tracking-wide transition-colors ${
+                    isActive
+                      ? 'bg-white/40 text-espresso'
+                      : 'text-secondary hover:bg-white/25 hover:text-espresso'
                   }`
                 }
               >
@@ -58,7 +64,7 @@ export function Header() {
             ))}
           </nav>
 
-          <div className="hidden items-center gap-3 lg:flex">
+          <div className="hidden items-center gap-2 lg:flex">
             <label className="sr-only" htmlFor="preview-medspa">
               Preview MedSpa
             </label>
@@ -66,7 +72,7 @@ export function Header() {
               id="preview-medspa"
               value={medSpaId}
               onChange={(e) => setMedSpaId(e.target.value as MedSpaId)}
-              className="max-w-[10.5rem] truncate border border-border bg-card px-2 py-1.5 text-xs text-secondary"
+              className="max-w-[7.5rem] truncate rounded-full border border-white/30 bg-white/25 px-2.5 py-1.5 text-[0.7rem] text-secondary backdrop-blur-sm"
               title="Preview MedSpa"
             >
               {medSpaOptions.map((opt) => (
@@ -75,24 +81,18 @@ export function Header() {
                 </option>
               ))}
             </select>
-            <Link
-              to="/book"
-              className="inline-flex items-center bg-espresso px-4 py-2.5 text-sm font-medium tracking-wide text-ivory transition hover:bg-charcoal"
-            >
+            <Link to="/book" className="btn-primary !px-4 !py-2 text-xs sm:text-sm" data-cursor="cta">
               {config.cta.book}
             </Link>
           </div>
 
           <div className="flex items-center gap-2 lg:hidden">
-            <Link
-              to="/book"
-              className="inline-flex items-center bg-espresso px-3 py-2 text-xs font-medium tracking-wide text-ivory"
-            >
+            <Link to="/book" className="btn-primary !px-3.5 !py-2 text-xs" data-cursor="cta">
               Book
             </Link>
             <button
               type="button"
-              className="inline-flex size-10 items-center justify-center border border-border"
+              className="inline-flex size-10 items-center justify-center rounded-full border border-white/35 bg-white/25"
               aria-expanded={open}
               aria-controls="mobile-menu"
               aria-label={open ? 'Close menu' : 'Open menu'}
@@ -101,53 +101,64 @@ export function Header() {
               {open ? <X className="size-5" /> : <Menu className="size-5" />}
             </button>
           </div>
-        </div>
+        </motion.div>
       </div>
 
-      {open && (
-        <div
-          id="mobile-menu"
-          className="border-t border-border bg-background lg:hidden"
-        >
-          <nav className="section-pad flex flex-col gap-1 py-4" aria-label="Mobile">
-            {config.navigation.map((item) => (
-              <NavLink
-                key={item.href}
-                to={item.href}
-                onClick={() => setOpen(false)}
-                className={({ isActive }) =>
-                  `px-1 py-3 text-base ${isActive ? 'text-espresso' : 'text-secondary'}`
-                }
-              >
-                {item.label}
-              </NavLink>
-            ))}
-            <Link
-              to="/book"
-              onClick={() => setOpen(false)}
-              className="mt-2 bg-espresso px-4 py-3 text-center text-sm font-medium text-ivory"
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            id="mobile-menu"
+            className="pointer-events-auto absolute inset-x-0 top-full section-pad pt-3 lg:hidden"
+            initial={{ opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.25 }}
+          >
+            <nav
+              className="glass-strong glass-reflect mx-auto flex max-w-5xl flex-col gap-1 rounded-[1.75rem] p-4"
+              aria-label="Mobile"
             >
-              {config.cta.book}
-            </Link>
-            <div className="mt-4 border-t border-border pt-4">
-              <p className="mb-2 text-xs uppercase tracking-wider text-muted-foreground">
-                Preview MedSpa
-              </p>
-              <select
-                value={medSpaId}
-                onChange={(e) => setMedSpaId(e.target.value as MedSpaId)}
-                className="w-full border border-border bg-card px-3 py-2 text-sm"
+              {config.navigation.map((item) => (
+                <NavLink
+                  key={item.href}
+                  to={item.href}
+                  onClick={() => setOpen(false)}
+                  className={({ isActive }) =>
+                    `rounded-2xl px-4 py-3 text-base ${
+                      isActive ? 'bg-white/45 text-espresso' : 'text-secondary'
+                    }`
+                  }
+                >
+                  {item.label}
+                </NavLink>
+              ))}
+              <Link
+                to="/book"
+                onClick={() => setOpen(false)}
+                className="btn-primary mt-2 justify-center"
               >
-                {medSpaOptions.map((opt) => (
-                  <option key={opt.id} value={opt.id}>
-                    {opt.label}
-                  </option>
-                ))}
-              </select>
-            </div>
-          </nav>
-        </div>
-      )}
+                {config.cta.book}
+              </Link>
+              <div className="mt-3 border-t border-white/30 pt-3">
+                <p className="mb-2 px-1 text-xs uppercase tracking-wider text-muted-foreground">
+                  Preview MedSpa
+                </p>
+                <select
+                  value={medSpaId}
+                  onChange={(e) => setMedSpaId(e.target.value as MedSpaId)}
+                  className="w-full rounded-2xl border border-white/35 bg-white/40 px-3 py-2.5 text-sm"
+                >
+                  {medSpaOptions.map((opt) => (
+                    <option key={opt.id} value={opt.id}>
+                      {opt.label}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </nav>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </header>
   )
 }

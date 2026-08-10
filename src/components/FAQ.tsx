@@ -7,7 +7,7 @@ export function FAQAccordion({ items }: { items: FAQItem[] | { id?: string; ques
   const [open, setOpen] = useState<number | null>(0)
 
   return (
-    <div className="divide-y divide-border border-y border-border">
+    <div className="divide-y divide-white/30">
       {items.map((item, index) => {
         const panelId = `${baseId}-panel-${index}`
         const buttonId = `${baseId}-button-${index}`
@@ -20,7 +20,7 @@ export function FAQAccordion({ items }: { items: FAQItem[] | { id?: string; ques
                 type="button"
                 aria-expanded={isOpen}
                 aria-controls={panelId}
-                className="flex w-full items-center justify-between gap-4 py-5 text-left"
+                className="flex w-full items-center justify-between gap-4 py-5 text-left transition hover:text-accent"
                 onClick={() => setOpen(isOpen ? null : index)}
               >
                 <span className="font-display text-lg sm:text-xl">{item.question}</span>

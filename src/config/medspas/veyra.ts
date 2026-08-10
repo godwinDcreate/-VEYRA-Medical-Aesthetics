@@ -90,8 +90,7 @@ export const veyraConfig: MedSpaConfig = {
     brandLabel: 'VEYRA',
     brandSubLabel: 'Medical Aesthetics',
     headline: 'Advanced Treatments. Natural Confidence.',
-    supporting:
-      'Personalized aesthetic care designed to help you look refreshed, confident, and naturally yourself.',
+    supporting: 'Personalized aesthetic care designed around you.',
     primaryCta: { label: 'Book a Consultation', href: '/book' },
     secondaryCta: { label: 'Explore Treatments', href: '/treatments' },
     image: {
@@ -156,41 +155,55 @@ export const veyraConfig: MedSpaConfig = {
   faqs: [
     {
       id: 'f1',
-      question: 'How long does a MedSpa consultation take?',
+      question: 'What is Botox?',
       answer:
-        'Most first consultations at this demo clinic concept are designed around 20–45 minutes, depending on your goals and questions. The focus is clarity — not rushing a decision.',
-      category: 'Consultation',
+        'Botox is a neuromodulator treatment commonly discussed to soften the appearance of dynamic facial lines caused by repeated muscle movement. Suitability and dosing are determined only after a provider consultation.',
+      category: 'Treatments',
     },
     {
       id: 'f2',
-      question: 'What should I ask during a MedSpa consultation?',
+      question: 'What is the difference between Botox and dermal fillers?',
       answer:
-        'Ask about provider qualifications, alternatives to a suggested treatment, expected ranges of change, downtime, costs, and how the clinic measures success for goals like yours.',
-      category: 'Consultation',
+        'Botox temporarily relaxes targeted muscles that create dynamic lines. Dermal fillers add volume or contour to areas that have lost structure or need soft definition. They address different concerns and are not interchangeable.',
+      category: 'Treatments',
     },
     {
       id: 'f3',
+      question: 'Which treatments are commonly used for fine lines?',
+      answer:
+        'Fine lines may be discussed through neuromodulators, skin rejuvenation, or combination plans depending on whether lines are dynamic, etched, or related to texture and hydration. A consultation clarifies which category — if any — fits your goals.',
+      category: 'Treatments',
+    },
+    {
+      id: 'f4',
+      question: 'How does a MedSpa consultation work?',
+      answer:
+        'A consultation typically covers your goals, medical history, treatment options worth discussing, expected ranges of change, downtime, and next steps. At VEYRA’s demo concept, the emphasis is education and personalized planning — never pressure.',
+      category: 'Consultation',
+    },
+    {
+      id: 'f5',
+      question: 'What should I ask before choosing a MedSpa?',
+      answer:
+        'Ask about provider qualifications, how recommendations are personalized, alternatives to a suggested treatment, realistic outcomes, aftercare, pricing transparency, and how the clinic handles follow-up.',
+      category: 'Consultation',
+    },
+    {
+      id: 'f6',
+      question: 'Where can I find a MedSpa in Austin?',
+      answer:
+        'This fictional portfolio MedSpa is set in Austin, Texas, with a demo address on Demo Boulevard. Use the location page for hours and contact placeholders when evaluating a real local practice.',
+      category: 'Location',
+    },
+    {
+      id: 'f7',
       question: 'Are treatments appropriate for everyone?',
       answer:
         'No. Suitability depends on medical history, anatomy, skin type, goals, and timing. A qualified provider determines what is appropriate to discuss or perform.',
       category: 'Safety',
     },
     {
-      id: 'f4',
-      question: 'How should I prepare for my visit?',
-      answer:
-        'Bring a list of medications and allergies, note prior aesthetic procedures, arrive with clean skin when asked, and prepare photos or goals you want to discuss.',
-      category: 'Preparation',
-    },
-    {
-      id: 'f5',
-      question: 'Where is VEYRA located?',
-      answer:
-        'This fictional portfolio MedSpa is set in Austin, Texas, with a demo address on Demo Boulevard. Use the location page for hours and contact placeholders.',
-      category: 'Location',
-    },
-    {
-      id: 'f6',
+      id: 'f8',
       question: 'Do you guarantee results?',
       answer:
         'No ethical MedSpa should guarantee identical outcomes. Individual results vary. This demo site emphasizes education and realistic expectation-setting.',

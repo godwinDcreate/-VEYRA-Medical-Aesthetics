@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { ArrowRight } from 'lucide-react'
 import { useMedSpa } from '@/context/MedSpaContext'
 
 export function Footer() {
@@ -6,91 +7,57 @@ export function Footer() {
   const year = new Date().getFullYear()
 
   return (
-    <footer className="border-t border-border bg-muted/40">
-      <div className="section-pad container-wide py-14">
-        <div className="grid gap-10 md:grid-cols-4">
-          <div className="md:col-span-1">
-            <p className="font-display text-2xl tracking-[0.08em]">{config.brand.shortName}</p>
-            <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{config.brand.tagline}</p>
-          </div>
-          <div>
-            <p className="text-xs font-medium uppercase tracking-[0.18em] text-secondary">Explore</p>
-            <ul className="mt-4 space-y-2 text-sm">
-              <li>
-                <Link to="/treatments" className="hover:text-accent">
-                  Treatments
-                </Link>
-              </li>
-              <li>
-                <Link to="/about" className="hover:text-accent">
-                  About
-                </Link>
-              </li>
-              <li>
-                <Link to="/results" className="hover:text-accent">
-                  Results
-                </Link>
-              </li>
-              <li>
-                <Link to="/faq" className="hover:text-accent">
-                  FAQs
-                </Link>
-              </li>
-              <li>
-                <Link to="/book" className="hover:text-accent">
-                  Book
-                </Link>
-              </li>
-            </ul>
-          </div>
-          <div>
-            <p className="text-xs font-medium uppercase tracking-[0.18em] text-secondary">Visit</p>
-            <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
-              <li>
-                <Link to="/locations/austin" className="hover:text-accent">
-                  {config.contact.city}, {config.contact.stateCode}
-                </Link>
-              </li>
-              <li>
-                <a href={config.contact.phoneHref} className="hover:text-accent">
-                  {config.contact.phone}
-                </a>
-              </li>
-              <li>
-                <a href={`mailto:${config.contact.email}`} className="hover:text-accent">
-                  {config.contact.email}
-                </a>
-              </li>
-              <li>
-                <Link to="/contact" className="hover:text-accent">
-                  Contact
-                </Link>
-              </li>
-            </ul>
-          </div>
-          <div>
-            <p className="text-xs font-medium uppercase tracking-[0.18em] text-secondary">System</p>
-            <ul className="mt-4 space-y-2 text-sm">
-              <li>
-                <Link to="/system" className="hover:text-accent">
+    <footer className="relative mt-8 border-t border-white/25">
+      <div className="section-pad container-wide py-16 sm:py-20">
+        <div className="glass-light glass-reflect rounded-[1.75rem] p-8 sm:p-10 lg:p-12">
+          <div className="grid gap-10 lg:grid-cols-12">
+            <div className="lg:col-span-4">
+              <p className="font-display text-3xl tracking-[0.14em]">{config.brand.shortName}</p>
+              <p className="mt-2 text-xs uppercase tracking-[0.24em] text-muted-foreground">
+                Medical Aesthetics
+              </p>
+              <p className="mt-4 text-sm text-muted-foreground">
+                {config.contact.city}, {config.contact.state}
+              </p>
+            </div>
+            <div className="lg:col-span-3">
+              <p className="text-[0.65rem] font-medium uppercase tracking-[0.22em] text-secondary">
+                Navigation
+              </p>
+              <ul className="mt-4 space-y-2.5 text-sm">
+                {['Treatments', 'About', 'Results', 'FAQs', 'Contact'].map((label, i) => {
+                  const hrefs = ['/treatments', '/about', '/results', '/faq', '/contact']
+                  return (
+                    <li key={label}>
+                      <Link to={hrefs[i]} className="hover:text-accent">
+                        {label}
+                      </Link>
+                    </li>
+                  )
+                })}
+              </ul>
+            </div>
+            <div className="lg:col-span-5 lg:flex lg:flex-col lg:items-end lg:justify-between">
+              <Link to="/book" className="btn-primary group" data-cursor="cta">
+                Book a Consultation
+                <ArrowRight className="size-4 transition-transform group-hover:translate-x-0.5" aria-hidden />
+              </Link>
+              <div className="mt-8 flex flex-wrap gap-4 text-sm lg:mt-0 lg:justify-end">
+                <Link to="/system" className="text-muted-foreground hover:text-accent">
                   Website System
                 </Link>
-              </li>
-              <li>
-                <Link to="/privacy" className="hover:text-accent">
+                <Link to="/privacy" className="text-muted-foreground hover:text-accent">
                   Privacy
                 </Link>
-              </li>
-              <li>
-                <Link to="/terms" className="hover:text-accent">
+                <Link to="/terms" className="text-muted-foreground hover:text-accent">
                   Terms
                 </Link>
-              </li>
-            </ul>
+              </div>
+            </div>
           </div>
         </div>
 
-        <div className="mt-12 border-t border-border pt-6">
+        <div className="mt-8 px-1">
           <p className="text-xs leading-relaxed text-muted-foreground">{config.brand.disclaimer}</p>
           <p className="mt-3 text-xs text-muted-foreground">
             © {year} {config.brand.name}. Portfolio demonstration — Build once. Configure. Improve. Repeat.

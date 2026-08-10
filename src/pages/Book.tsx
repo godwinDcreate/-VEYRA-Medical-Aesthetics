@@ -27,8 +27,8 @@ export function Book() {
             <SectionHeading
               as="h1"
               eyebrow="Consultation"
-              title="Book a consultation"
-              description="Share your goals and preferred timing. A member of the care team (in a real deployment) would follow up to confirm."
+              title="A luxury consultation, not a form."
+              description="Four calm steps. Share your goals and preferred timing — we’ll confirm next steps."
             />
             <ul className="mt-8 space-y-3 text-sm text-muted-foreground">
               <li>• Unhurried conversation about your goals</li>

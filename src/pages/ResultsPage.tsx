@@ -31,51 +31,53 @@ export function ResultsPage() {
             title="Results"
             description="Clearly fictional demo imagery. Individual results may vary. Not clinical claims."
           />
-          <div className="mt-12 grid gap-12 md:grid-cols-2">
+          <div className="mt-12 grid gap-8 md:grid-cols-2">
             {config.results.map((r) => (
               <Reveal key={r.id}>
-                <article>
-                  <div className="grid grid-cols-2 gap-3">
-                    <figure>
-                      <figcaption className="mb-2 text-xs uppercase tracking-wider text-muted-foreground">
-                        Before
-                      </figcaption>
+                <article className="group relative overflow-hidden rounded-[1.5rem]">
+                  <div className="grid grid-cols-2 gap-1.5 overflow-hidden rounded-[1.5rem]">
+                    <div className="relative">
                       <img
                         src={r.beforeSrc}
                         alt={r.beforeAlt}
                         width={600}
                         height={750}
                         loading="lazy"
-                        className="aspect-[4/5] w-full object-cover"
+                        className="aspect-[4/5] w-full object-cover transition duration-700 group-hover:scale-[1.02]"
                       />
-                    </figure>
-                    <figure>
-                      <figcaption className="mb-2 text-xs uppercase tracking-wider text-muted-foreground">
-                        After
-                      </figcaption>
+                      <span className="glass-medium absolute left-3 top-3 rounded-full px-3 py-1 text-[0.65rem] uppercase tracking-[0.18em]">
+                        Before
+                      </span>
+                    </div>
+                    <div className="relative">
                       <img
                         src={r.afterSrc}
                         alt={r.afterAlt}
                         width={600}
                         height={750}
                         loading="lazy"
-                        className="aspect-[4/5] w-full object-cover"
+                        className="aspect-[4/5] w-full object-cover transition duration-700 group-hover:scale-[1.02]"
                       />
-                    </figure>
+                      <span className="glass-medium absolute left-3 top-3 rounded-full px-3 py-1 text-[0.65rem] uppercase tracking-[0.18em]">
+                        After
+                      </span>
+                    </div>
                   </div>
-                  <h2 className="mt-5 font-display text-2xl">{r.title}</h2>
-                  <p className="mt-2 text-sm text-muted-foreground">{r.description}</p>
-                  <Link
-                    to={`/treatments/${r.treatmentSlug}`}
-                    className="mt-3 inline-block text-sm font-medium hover:text-accent"
-                  >
-                    Learn about related treatment →
-                  </Link>
+                  <div className="glass-medium glass-reflect absolute inset-x-4 bottom-4 rounded-2xl p-4 sm:p-5">
+                    <h2 className="font-display text-2xl">{r.title}</h2>
+                    <p className="mt-1.5 text-sm text-muted-foreground">{r.description}</p>
+                    <p className="mt-2 text-[0.7rem] text-muted-foreground">Individual results may vary.</p>
+                    <Link
+                      to={`/treatments/${r.treatmentSlug}`}
+                      className="mt-3 inline-block text-sm font-medium hover:text-accent"
+                    >
+                      Learn about related treatment →
+                    </Link>
+                  </div>
                 </article>
               </Reveal>
             ))}
           </div>
-          <p className="mt-10 text-xs text-muted-foreground">Individual results may vary.</p>
         </div>
       </section>
       <CTASection

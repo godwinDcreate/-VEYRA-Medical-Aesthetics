@@ -11,6 +11,7 @@ import { FAQAccordion } from '@/components/FAQ'
 import { LocationSection } from '@/components/LocationSection'
 import { CTASection } from '@/components/CTASection'
 import { Reveal } from '@/components/Reveal'
+import { LiquidBlob } from '@/components/LiquidBlob'
 import { buildPageSeo } from '@/lib/seo'
 import {
   breadcrumbSchema,
@@ -36,7 +37,7 @@ export function Home() {
       <SEO seo={seo} jsonLd={jsonLd} />
       <Hero content={config.hero} />
 
-      <section className="section-pad py-16 sm:py-24">
+      <section className="section-pad relative py-16 sm:py-24">
         <div className="container-wide grid gap-10 lg:grid-cols-12">
           <div className="lg:col-span-5">
             <Reveal>
@@ -49,24 +50,37 @@ export function Home() {
           </div>
           <div className="lg:col-span-6 lg:col-start-7">
             <Reveal delay={0.08}>
-              <p className="text-base leading-relaxed text-muted-foreground sm:text-lg">
-                At {config.brand.shortName}, every plan begins with listening. We discuss what you hope to
-                improve, what “natural” means for you, and which treatment categories — if any — are worth
-                exploring with a qualified provider in {config.contact.city}.
-              </p>
-              <p className="mt-4 text-base leading-relaxed text-muted-foreground sm:text-lg">
-                {config.brand.supportingStatement} Education first. Pressure never.
-              </p>
-              <Link to="/about" className="mt-6 inline-block text-sm font-medium tracking-wide underline-offset-4 hover:underline">
-                About {config.brand.shortName}
-              </Link>
+              <div className="glass-light glass-reflect rounded-[1.5rem] p-6 sm:p-8">
+                <p className="text-base leading-relaxed text-muted-foreground sm:text-lg">
+                  At {config.brand.shortName}, every plan begins with listening. We discuss what you hope to
+                  improve, what “natural” means for you, and which treatment categories — if any — are worth
+                  exploring with a qualified provider in {config.contact.city}.
+                </p>
+                <p className="mt-4 text-base leading-relaxed text-muted-foreground sm:text-lg">
+                  {config.brand.supportingStatement} Education first. Pressure never.
+                </p>
+                <Link
+                  to="/about"
+                  className="mt-6 inline-block text-sm font-medium tracking-wide text-espresso underline-offset-4 hover:underline"
+                >
+                  About {config.brand.shortName}
+                </Link>
+              </div>
             </Reveal>
           </div>
         </div>
       </section>
 
-      <section className="section-pad border-y border-border bg-muted/30 py-16 sm:py-24">
-        <div className="container-wide">
+      <section className="section-pad relative overflow-hidden py-16 sm:py-24">
+        <LiquidBlob
+          size={420}
+          color="sage"
+          blur={90}
+          opacity={0.35}
+          animation="drift"
+          className="right-[-8%] top-[10%] hidden md:block"
+        />
+        <div className="container-wide relative">
           <Reveal>
             <SectionHeading
               eyebrow="Treatments"
@@ -75,31 +89,31 @@ export function Home() {
             />
           </Reveal>
           <div className="mt-12">
-            <TreatmentGrid treatments={config.treatments} />
+            <TreatmentGrid treatments={config.treatments.slice(0, 3)} />
           </div>
           <div className="mt-10">
-            <Link to="/treatments" className="text-sm font-medium tracking-wide hover:text-accent">
+            <Link to="/treatments" className="btn-glass">
               View all treatments →
             </Link>
           </div>
         </div>
       </section>
 
-      <section className="section-pad py-16 sm:py-24">
+      <section className="section-pad relative py-16 sm:py-24">
         <div className="container-wide">
           <AITreatmentGuide />
         </div>
       </section>
 
-      <section className="section-pad py-16 sm:py-24">
+      <section className="section-pad relative py-16 sm:py-24">
         <div className="container-wide">
           <Reveal>
             <SectionHeading eyebrow="Why us" title={`Why ${config.brand.shortName}`} />
           </Reveal>
-          <div className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
             {config.whyItems.map((item, i) => (
               <Reveal key={item.id} delay={i * 0.04}>
-                <div className="border-t border-border pt-5">
+                <div className="glass-light glass-reflect h-full rounded-[1.35rem] p-6 transition duration-500 hover:-translate-y-1 hover:border-white/45">
                   <h3 className="font-display text-xl sm:text-2xl">{item.title}</h3>
                   <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{item.description}</p>
                 </div>
@@ -109,8 +123,8 @@ export function Home() {
         </div>
       </section>
 
-      <section className="section-pad border-y border-border bg-card/50 py-16 sm:py-24">
-        <div className="container-wide space-y-14">
+      <section className="section-pad relative py-16 sm:py-24">
+        <div className="container-wide space-y-10">
           <Reveal>
             <SectionHeading
               eyebrow="Providers"
@@ -129,8 +143,16 @@ export function Home() {
         </div>
       </section>
 
-      <section className="section-pad py-16 sm:py-24">
-        <div className="container-wide">
+      <section className="section-pad relative overflow-hidden py-16 sm:py-24">
+        <LiquidBlob
+          size={380}
+          color="champagne"
+          blur={80}
+          opacity={0.45}
+          animation="float"
+          className="left-[-10%] bottom-[5%] hidden lg:block"
+        />
+        <div className="container-wide relative">
           <Reveal>
             <SectionHeading
               eyebrow="Results"
@@ -141,56 +163,62 @@ export function Home() {
           <div className="mt-12 grid gap-8 md:grid-cols-2">
             {config.results.map((r) => (
               <Reveal key={r.id}>
-                <article>
-                  <div className="grid grid-cols-2 gap-2">
-                    <div>
-                      <p className="mb-2 text-xs uppercase tracking-wider text-muted-foreground">Before</p>
+                <article className="group relative overflow-hidden rounded-[1.5rem]">
+                  <div className="grid grid-cols-2 gap-1.5 overflow-hidden rounded-[1.5rem]">
+                    <div className="relative">
                       <img
                         src={r.beforeSrc}
                         alt={r.beforeAlt}
                         width={600}
                         height={750}
                         loading="lazy"
-                        className="aspect-[4/5] w-full object-cover"
+                        className="aspect-[4/5] w-full object-cover transition duration-700 group-hover:scale-[1.02]"
                       />
+                      <span className="glass-medium absolute left-3 top-3 rounded-full px-3 py-1 text-[0.65rem] uppercase tracking-[0.18em]">
+                        Before
+                      </span>
                     </div>
-                    <div>
-                      <p className="mb-2 text-xs uppercase tracking-wider text-muted-foreground">After</p>
+                    <div className="relative">
                       <img
                         src={r.afterSrc}
                         alt={r.afterAlt}
                         width={600}
                         height={750}
                         loading="lazy"
-                        className="aspect-[4/5] w-full object-cover"
+                        className="aspect-[4/5] w-full object-cover transition duration-700 group-hover:scale-[1.02]"
                       />
+                      <span className="glass-medium absolute left-3 top-3 rounded-full px-3 py-1 text-[0.65rem] uppercase tracking-[0.18em]">
+                        After
+                      </span>
                     </div>
                   </div>
-                  <h3 className="mt-4 font-display text-xl">{r.title}</h3>
-                  <p className="mt-2 text-sm text-muted-foreground">{r.description}</p>
-                  <Link
-                    to={`/treatments/${r.treatmentSlug}`}
-                    className="mt-3 inline-block text-sm font-medium hover:text-accent"
-                  >
-                    Related treatment →
-                  </Link>
+                  <div className="glass-medium glass-reflect absolute inset-x-4 bottom-4 rounded-2xl p-4 sm:p-5">
+                    <h3 className="font-display text-xl sm:text-2xl">{r.title}</h3>
+                    <p className="mt-1.5 text-sm text-muted-foreground">{r.description}</p>
+                    <p className="mt-2 text-[0.7rem] text-muted-foreground">Individual results may vary.</p>
+                    <Link
+                      to={`/treatments/${r.treatmentSlug}`}
+                      className="mt-3 inline-block text-sm font-medium hover:text-accent"
+                    >
+                      Related treatment →
+                    </Link>
+                  </div>
                 </article>
               </Reveal>
             ))}
           </div>
-          <p className="mt-8 text-xs text-muted-foreground">Individual results may vary. Demo content only.</p>
-          <Link to="/results" className="mt-4 inline-block text-sm font-medium hover:text-accent">
+          <Link to="/results" className="mt-8 inline-block text-sm font-medium hover:text-accent">
             View results →
           </Link>
         </div>
       </section>
 
-      <section className="section-pad bg-muted/30 py-16 sm:py-24">
+      <section className="section-pad relative py-16 sm:py-24">
         <div className="container-wide">
           <Reveal>
             <SectionHeading eyebrow="Voices" title="What patients say" description="Fictional demo testimonials." />
           </Reveal>
-          <div className="mt-12 grid gap-10 lg:grid-cols-3">
+          <div className="mt-12 grid gap-5 lg:grid-cols-3">
             {config.testimonials.map((t, i) => (
               <Reveal key={t.id} delay={i * 0.05}>
                 <Testimonial item={t} />
@@ -200,10 +228,10 @@ export function Home() {
         </div>
       </section>
 
-      <section className="section-pad py-16 sm:py-24">
+      <section className="section-pad relative py-16 sm:py-24">
         <div className="container-wide grid gap-12 lg:grid-cols-2">
           <Reveal>
-            <div>
+            <div className="glass-light glass-reflect rounded-[1.5rem] p-6 sm:p-8">
               <SectionHeading eyebrow="FAQ" title="Common questions" />
               <div className="mt-8">
                 <FAQAccordion items={config.faqs.slice(0, 4)} />
@@ -215,6 +243,25 @@ export function Home() {
           </Reveal>
           <Reveal delay={0.06}>
             <LocationSection />
+          </Reveal>
+        </div>
+      </section>
+
+      {/* GEO answer-first cluster */}
+      <section className="section-pad relative pb-8 pt-4 sm:pb-12">
+        <div className="container-wide">
+          <Reveal>
+            <div className="glass-medium glass-reflect rounded-[1.5rem] p-6 sm:p-10">
+              <h2 className="font-display text-2xl sm:text-3xl">Questions people ask about MedSpas</h2>
+              <div className="mt-8 grid gap-6 md:grid-cols-2">
+                {config.faqs.slice(0, 6).map((f) => (
+                  <div key={f.id}>
+                    <h3 className="text-sm font-medium text-espresso">{f.question}</h3>
+                    <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{f.answer}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
           </Reveal>
         </div>
       </section>
