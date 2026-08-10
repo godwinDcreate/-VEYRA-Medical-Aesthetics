@@ -41,9 +41,7 @@ Live demo tenants:
 | `aurelia` | AURELIA Aesthetics |
 | `nova` | NOVA Medical Spa |
 
-Use **Preview MedSpa** in the header to switch brands, colors, copy, location, and SEO instantly.
-
-Developer architecture tour: [`/system`](./src/pages/System.tsx)
+Switch brands on the developer architecture tour: [`/system`](./src/pages/System.tsx)
 
 ---
 

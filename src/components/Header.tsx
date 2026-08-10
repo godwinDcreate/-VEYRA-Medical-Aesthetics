@@ -3,10 +3,9 @@ import { Link, NavLink } from 'react-router-dom'
 import { Menu, X } from 'lucide-react'
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion'
 import { useMedSpa } from '@/context/MedSpaContext'
-import { medSpaOptions, type MedSpaId } from '@/config/medspa'
 
 export function Header() {
-  const { config, medSpaId, setMedSpaId } = useMedSpa()
+  const { config } = useMedSpa()
   const [open, setOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const reduce = useReducedMotion()
@@ -65,22 +64,6 @@ export function Header() {
           </nav>
 
           <div className="hidden items-center gap-2 lg:flex">
-            <label className="sr-only" htmlFor="preview-medspa">
-              Preview MedSpa
-            </label>
-            <select
-              id="preview-medspa"
-              value={medSpaId}
-              onChange={(e) => setMedSpaId(e.target.value as MedSpaId)}
-              className="max-w-[7.5rem] truncate rounded-full border border-white/30 bg-white/25 px-2.5 py-1.5 text-[0.7rem] text-secondary backdrop-blur-sm"
-              title="Preview MedSpa"
-            >
-              {medSpaOptions.map((opt) => (
-                <option key={opt.id} value={opt.id}>
-                  {opt.label}
-                </option>
-              ))}
-            </select>
             <Link to="/book" className="btn-primary !px-4 !py-2 text-xs sm:text-sm" data-cursor="cta">
               {config.cta.book}
             </Link>
@@ -139,22 +122,6 @@ export function Header() {
               >
                 {config.cta.book}
               </Link>
-              <div className="mt-3 border-t border-white/30 pt-3">
-                <p className="mb-2 px-1 text-xs uppercase tracking-wider text-muted-foreground">
-                  Preview MedSpa
-                </p>
-                <select
-                  value={medSpaId}
-                  onChange={(e) => setMedSpaId(e.target.value as MedSpaId)}
-                  className="w-full rounded-2xl border border-white/35 bg-white/40 px-3 py-2.5 text-sm"
-                >
-                  {medSpaOptions.map((opt) => (
-                    <option key={opt.id} value={opt.id}>
-                      {opt.label}
-                    </option>
-                  ))}
-                </select>
-              </div>
             </nav>
           </motion.div>
         )}
