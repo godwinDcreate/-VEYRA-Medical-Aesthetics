@@ -142,6 +142,15 @@ export const aureliaConfig: MedSpaConfig = {
     explore: 'View Treatments',
     finalHeadline: 'Precision begins with a thoughtful consult.',
   },
+  socialLinks: {
+    instagram: 'https://www.instagram.com/aurelia.aesthetics.demo',
+    facebook: 'https://www.facebook.com/aurelia.aesthetics.demo',
+    tiktok: 'https://www.tiktok.com/@aurelia.aesthetics.demo',
+  },
+  results: veyraConfig.results.map((r) => ({
+    ...r,
+    disclaimer: r.disclaimer.replace(/VEYRA/g, 'AURELIA'),
+  })),
 }
 
 export default aureliaConfig

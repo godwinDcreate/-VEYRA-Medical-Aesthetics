@@ -213,23 +213,57 @@ export const veyraConfig: MedSpaConfig = {
   results: [
     {
       id: 'r1',
-      title: 'Refreshed expression lines',
-      description: 'Demo imagery illustrating a soft, natural-looking refresh conversation — not a clinical claim.',
+      treatment: 'Expression Lines',
       treatmentSlug: 'botox',
-      beforeAlt: 'Fictional before illustration for expression line discussion',
-      afterAlt: 'Fictional after illustration for expression line discussion',
-      beforeSrc: 'https://images.unsplash.com/photo-1515377905703-c4788e51af15?auto=format&fit=crop&w=600&q=70',
-      afterSrc: 'https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=600&q=70',
+      description:
+        'Placeholder pair for a verified before-and-after once licensed clinical photography is available.',
+      beforeImage: '',
+      afterImage: '',
+      altBefore: 'Before placeholder — licensed expression-line result pending',
+      altAfter: 'After placeholder — licensed expression-line result pending',
+      source: 'Pending licensed clinical photography',
+      usageRights: 'No licensed imagery yet — placeholder only; do not imply patient outcomes.',
+      disclaimer:
+        'Individual results may vary. Images are provided for demonstration purposes. Placeholder slots — not VEYRA patient results.',
+      width: 800,
+      height: 1000,
+      isPlaceholder: true,
     },
     {
       id: 'r2',
-      title: 'Skin clarity & glow',
-      description: 'Demo pair representing skin quality conversations. Individual results may vary.',
+      treatment: 'Skin Rejuvenation',
       treatmentSlug: 'hydrafacial',
-      beforeAlt: 'Fictional before illustration for skin quality discussion',
-      afterAlt: 'Fictional after illustration for skin quality discussion',
-      beforeSrc: 'https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?auto=format&fit=crop&w=600&q=70',
-      afterSrc: 'https://images.unsplash.com/photo-1540555700478-4be289fbecef?auto=format&fit=crop&w=600&q=70',
+      description:
+        'Placeholder pair reserved for a matching licensed skin-rejuvenation before-and-after.',
+      beforeImage: '',
+      afterImage: '',
+      altBefore: 'Before placeholder — licensed skin rejuvenation result pending',
+      altAfter: 'After placeholder — licensed skin rejuvenation result pending',
+      source: 'Pending licensed clinical photography',
+      usageRights: 'No licensed imagery yet — placeholder only; do not imply patient outcomes.',
+      disclaimer:
+        'Individual results may vary. Images are provided for demonstration purposes. Placeholder slots — not VEYRA patient results.',
+      width: 800,
+      height: 1000,
+      isPlaceholder: true,
+    },
+    {
+      id: 'r3',
+      treatment: 'Dermal Fillers',
+      treatmentSlug: 'dermal-fillers',
+      description:
+        'Placeholder pair for a verified filler conversation case once rights-cleared photography is supplied.',
+      beforeImage: '',
+      afterImage: '',
+      altBefore: 'Before placeholder — licensed dermal filler result pending',
+      altAfter: 'After placeholder — licensed dermal filler result pending',
+      source: 'Pending licensed clinical photography',
+      usageRights: 'No licensed imagery yet — placeholder only; do not imply patient outcomes.',
+      disclaimer:
+        'Individual results may vary. Images are provided for demonstration purposes. Placeholder slots — not VEYRA patient results.',
+      width: 800,
+      height: 1000,
+      isPlaceholder: true,
     },
   ],
   whyItems: [
@@ -301,7 +335,7 @@ export const veyraConfig: MedSpaConfig = {
     results: {
       title: 'Results | VEYRA Medical Aesthetics Austin',
       description:
-        'View demo before-and-after style imagery from VEYRA. Individual results may vary. Educational portfolio content only.',
+        'Before-and-after gallery for VEYRA. Verified, licensed pairs only when available. Individual results may vary. Educational portfolio content.',
       path: '/results',
     },
     faq: {
@@ -346,8 +380,9 @@ export const veyraConfig: MedSpaConfig = {
     },
   },
   socialLinks: {
-    instagram: 'https://instagram.com',
-    facebook: 'https://facebook.com',
+    instagram: 'https://www.instagram.com/veyra.aesthetics.demo',
+    facebook: 'https://www.facebook.com/veyra.aesthetics.demo',
+    tiktok: 'https://www.tiktok.com/@veyra.aesthetics.demo',
   },
   cta: {
     book: 'Book a Consultation',

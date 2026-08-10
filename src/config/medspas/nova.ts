@@ -139,6 +139,15 @@ export const novaConfig: MedSpaConfig = {
     explore: 'Explore Treatments',
     finalHeadline: 'Start with clarity. Build your plan from there.',
   },
+  socialLinks: {
+    instagram: 'https://www.instagram.com/nova.medspa.demo',
+    facebook: 'https://www.facebook.com/nova.medspa.demo',
+    tiktok: 'https://www.tiktok.com/@nova.medspa.demo',
+  },
+  results: veyraConfig.results.map((r) => ({
+    ...r,
+    disclaimer: r.disclaimer.replace(/VEYRA/g, 'NOVA'),
+  })),
 }
 
 export default novaConfig

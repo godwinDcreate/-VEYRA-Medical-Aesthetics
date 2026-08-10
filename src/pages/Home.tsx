@@ -12,6 +12,8 @@ import { LocationSection } from '@/components/LocationSection'
 import { CTASection } from '@/components/CTASection'
 import { Reveal } from '@/components/Reveal'
 import { LiquidBlob } from '@/components/LiquidBlob'
+import { ResultsGallery } from '@/components/BeforeAfterComparison'
+import { SocialSection } from '@/components/SocialSection'
 import { buildPageSeo } from '@/lib/seo'
 import {
   breadcrumbSchema,
@@ -157,55 +159,11 @@ export function Home() {
             <SectionHeading
               eyebrow="Results"
               title="A natural-looking refresh"
-              description="Demo imagery only. Individual results may vary."
+              description="Interactive before-and-after comparisons. Placeholders until licensed pairs are available. Individual results may vary."
             />
           </Reveal>
-          <div className="mt-12 grid gap-8 md:grid-cols-2">
-            {config.results.map((r) => (
-              <Reveal key={r.id}>
-                <article className="group relative overflow-hidden rounded-[1.5rem]">
-                  <div className="grid grid-cols-2 gap-1.5 overflow-hidden rounded-[1.5rem]">
-                    <div className="relative">
-                      <img
-                        src={r.beforeSrc}
-                        alt={r.beforeAlt}
-                        width={600}
-                        height={750}
-                        loading="lazy"
-                        className="aspect-[4/5] w-full object-cover transition duration-700 group-hover:scale-[1.02]"
-                      />
-                      <span className="glass-medium absolute left-3 top-3 rounded-full px-3 py-1 text-[0.65rem] uppercase tracking-[0.18em]">
-                        Before
-                      </span>
-                    </div>
-                    <div className="relative">
-                      <img
-                        src={r.afterSrc}
-                        alt={r.afterAlt}
-                        width={600}
-                        height={750}
-                        loading="lazy"
-                        className="aspect-[4/5] w-full object-cover transition duration-700 group-hover:scale-[1.02]"
-                      />
-                      <span className="glass-medium absolute left-3 top-3 rounded-full px-3 py-1 text-[0.65rem] uppercase tracking-[0.18em]">
-                        After
-                      </span>
-                    </div>
-                  </div>
-                  <div className="glass-medium glass-reflect absolute inset-x-4 bottom-4 rounded-2xl p-4 sm:p-5">
-                    <h3 className="font-display text-xl sm:text-2xl">{r.title}</h3>
-                    <p className="mt-1.5 text-sm text-muted-foreground">{r.description}</p>
-                    <p className="mt-2 text-[0.7rem] text-muted-foreground">Individual results may vary.</p>
-                    <Link
-                      to={`/treatments/${r.treatmentSlug}`}
-                      className="mt-3 inline-block text-sm font-medium hover:text-accent"
-                    >
-                      Related treatment →
-                    </Link>
-                  </div>
-                </article>
-              </Reveal>
-            ))}
+          <div className="mt-12">
+            <ResultsGallery results={config.results.slice(0, 3)} />
           </div>
           <Link to="/results" className="mt-8 inline-block text-sm font-medium hover:text-accent">
             View results →
@@ -265,6 +223,8 @@ export function Home() {
           </Reveal>
         </div>
       </section>
+
+      <SocialSection />
 
       <CTASection
         headline={config.cta.finalHeadline}

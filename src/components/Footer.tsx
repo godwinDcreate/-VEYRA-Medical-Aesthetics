@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import { ArrowRight } from 'lucide-react'
 import { useMedSpa } from '@/context/MedSpaContext'
+import { SocialLinks } from '@/components/SocialLinks'
 
 export function Footer() {
   const { config } = useMedSpa()
@@ -19,6 +20,12 @@ export function Footer() {
               <p className="mt-4 text-sm text-muted-foreground">
                 {config.contact.city}, {config.contact.state}
               </p>
+              <SocialLinks
+                links={config.socialLinks}
+                variant="footer"
+                label="Follow"
+                className="mt-6"
+              />
             </div>
             <div className="lg:col-span-3">
               <p className="text-[0.65rem] font-medium uppercase tracking-[0.22em] text-secondary">

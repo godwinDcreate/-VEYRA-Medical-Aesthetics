@@ -1,6 +1,14 @@
 import type { FAQItem, MedSpaConfig, Treatment } from '@/types/medspa'
 
+function socialSameAs(config: MedSpaConfig): string[] {
+  const { instagram, facebook, tiktok } = config.socialLinks
+  return [instagram, facebook, tiktok].filter(
+    (url): url is string => Boolean(url) && url !== '#'
+  )
+}
+
 export function organizationSchema(config: MedSpaConfig) {
+  const sameAs = socialSameAs(config)
   return {
     '@context': 'https://schema.org',
     '@type': 'Organization',
@@ -17,6 +25,7 @@ export function organizationSchema(config: MedSpaConfig) {
       postalCode: config.contact.zip,
       addressCountry: 'US',
     },
+    ...(sameAs.length > 0 ? { sameAs } : {}),
   }
 }
 
@@ -37,6 +46,7 @@ export function websiteSchema(config: MedSpaConfig) {
 
 /** LocalBusiness without invented ratings, licenses, or review counts. */
 export function localBusinessSchema(config: MedSpaConfig) {
+  const sameAs = socialSameAs(config)
   return {
     '@context': 'https://schema.org',
     '@type': 'MedicalBusiness',
@@ -73,6 +83,7 @@ export function localBusinessSchema(config: MedSpaConfig) {
       name,
     })),
     priceRange: '$$',
+    ...(sameAs.length > 0 ? { sameAs } : {}),
   }
 }
 

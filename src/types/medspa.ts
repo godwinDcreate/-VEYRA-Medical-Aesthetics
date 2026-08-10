@@ -113,15 +113,40 @@ export interface FAQItem {
   category?: string
 }
 
+/**
+ * Linked before/after pair. Prefer verified, licensed imagery only.
+ * When `isPlaceholder` is true (or image srcs are empty), UI shows marked slots —
+ * never fabricate outcomes or imply the MedSpa performed the treatment.
+ */
 export interface ResultItem {
   id: string
-  title: string
-  description: string
+  /** Treatment / category label shown in the UI */
+  treatment: string
   treatmentSlug: string
-  beforeAlt: string
-  afterAlt: string
-  beforeSrc: string
-  afterSrc: string
+  description: string
+  beforeImage: string
+  afterImage: string
+  /** Optional AVIF/WebP for progressive enhancement when real assets exist */
+  beforeImageAvif?: string
+  beforeImageWebp?: string
+  afterImageAvif?: string
+  afterImageWebp?: string
+  /** Responsive srcSet when optimized assets are available */
+  beforeImageSrcSet?: string
+  afterImageSrcSet?: string
+  sizes?: string
+  altBefore: string
+  altAfter: string
+  /** Attribution / licensing — stored in config, not hardcoded in UI copy logic */
+  source: string
+  sourceUrl?: string
+  usageRights: string
+  disclaimer: string
+  /** Intrinsic dimensions — prevents layout shift & distortion */
+  width: number
+  height: number
+  /** When true, render clearly marked placeholders instead of claiming results */
+  isPlaceholder?: boolean
 }
 
 export interface WhyItem {
@@ -161,10 +186,11 @@ export interface HeroContent {
   }
 }
 
+/** Per-tenant social profiles. Use fictional/demo URLs for portfolio brands. */
 export interface SocialLinks {
   instagram?: string
   facebook?: string
-  googleBusiness?: string
+  tiktok?: string
 }
 
 export interface MedSpaConfig {
