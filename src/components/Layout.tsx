@@ -1,4 +1,4 @@
-import { Outlet, ScrollRestoration, useLocation } from 'react-router-dom'
+import { Outlet, useLocation } from 'react-router-dom'
 import { useEffect } from 'react'
 import { Header } from './Header'
 import { Footer } from './Footer'
@@ -6,6 +6,7 @@ import { Footer } from './Footer'
 export function Layout() {
   const location = useLocation()
 
+  // BrowserRouter-compatible scroll reset (ScrollRestoration needs a data router)
   useEffect(() => {
     window.scrollTo(0, 0)
   }, [location.pathname])
@@ -23,7 +24,6 @@ export function Layout() {
         <Outlet />
       </main>
       <Footer />
-      <ScrollRestoration />
     </div>
   )
 }
