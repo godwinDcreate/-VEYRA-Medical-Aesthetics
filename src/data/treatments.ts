@@ -79,7 +79,7 @@ export const baseTreatments: Treatment[] = [
     seoDescription:
       'Learn about Botox consultations in Austin at VEYRA Medical Aesthetics. Educational information on concerns, expectations, and how to book a personalized consultation.',
     image: treatmentImage(
-      'photo-1570172619604-923d0624c8b0',
+      'photo-1509967419530-da38b4704bc6',
       'Soft natural light across calm skin texture — editorial aesthetic care atmosphere'
     ),
   },
@@ -261,7 +261,7 @@ export const baseTreatments: Treatment[] = [
     seoDescription:
       'Learn about Hydrafacial consultations in Austin at VEYRA — what it is, common concerns, expectations, and how to book.',
     image: treatmentImage(
-      'photo-1570172619604-923d0624c8b0',
+      'photo-1570172619644-dfd03ed5d881',
       'Fresh hydrated skin tone in soft daylight — wellness editorial'
     ),
   },
