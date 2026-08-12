@@ -1,5 +1,6 @@
 import type { MedSpaConfig, ThemeTokens, Treatment } from '@/types/medspa'
 import { baseTreatments } from '@/data/treatments'
+import { eliteBeforeAfterResults } from '@/data/eliteBeforeAfterResults'
 
 /**
  * CMS integration point:
@@ -210,62 +211,7 @@ export const veyraConfig: MedSpaConfig = {
       category: 'Expectations',
     },
   ],
-  results: [
-    {
-      id: 'r1',
-      treatment: 'Expression Lines',
-      treatmentSlug: 'botox',
-      description:
-        'Placeholder pair for a verified before-and-after once licensed clinical photography is available.',
-      beforeImage: '',
-      afterImage: '',
-      altBefore: 'Before placeholder — licensed expression-line result pending',
-      altAfter: 'After placeholder — licensed expression-line result pending',
-      source: 'Pending licensed clinical photography',
-      usageRights: 'No licensed imagery yet — placeholder only; do not imply patient outcomes.',
-      disclaimer:
-        'Individual results may vary. Images are provided for demonstration purposes. Placeholder slots — not VEYRA patient results.',
-      width: 800,
-      height: 1000,
-      isPlaceholder: true,
-    },
-    {
-      id: 'r2',
-      treatment: 'Skin Rejuvenation',
-      treatmentSlug: 'hydrafacial',
-      description:
-        'Placeholder pair reserved for a matching licensed skin-rejuvenation before-and-after.',
-      beforeImage: '',
-      afterImage: '',
-      altBefore: 'Before placeholder — licensed skin rejuvenation result pending',
-      altAfter: 'After placeholder — licensed skin rejuvenation result pending',
-      source: 'Pending licensed clinical photography',
-      usageRights: 'No licensed imagery yet — placeholder only; do not imply patient outcomes.',
-      disclaimer:
-        'Individual results may vary. Images are provided for demonstration purposes. Placeholder slots — not VEYRA patient results.',
-      width: 800,
-      height: 1000,
-      isPlaceholder: true,
-    },
-    {
-      id: 'r3',
-      treatment: 'Dermal Fillers',
-      treatmentSlug: 'dermal-fillers',
-      description:
-        'Placeholder pair for a verified filler conversation case once rights-cleared photography is supplied.',
-      beforeImage: '',
-      afterImage: '',
-      altBefore: 'Before placeholder — licensed dermal filler result pending',
-      altAfter: 'After placeholder — licensed dermal filler result pending',
-      source: 'Pending licensed clinical photography',
-      usageRights: 'No licensed imagery yet — placeholder only; do not imply patient outcomes.',
-      disclaimer:
-        'Individual results may vary. Images are provided for demonstration purposes. Placeholder slots — not VEYRA patient results.',
-      width: 800,
-      height: 1000,
-      isPlaceholder: true,
-    },
-  ],
+  results: eliteBeforeAfterResults,
   whyItems: [
     {
       id: 'w1',

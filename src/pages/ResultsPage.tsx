@@ -29,15 +29,15 @@ export function ResultsPage() {
             as="h1"
             eyebrow="Gallery"
             title="Results"
-            description="Only verified, licensed before-and-after pairs belong here. Placeholders mark slots until rights-cleared imagery is available. Individual results may vary."
+            description="Sourced before-and-after examples from a public external gallery. These are reference images for presentation only, not VEYRA patient outcomes. Individual results may vary."
           />
           <Reveal className="mt-12">
             <ResultsGallery results={config.results} />
           </Reveal>
           <p className="mt-10 max-w-2xl text-sm leading-relaxed text-muted-foreground">
-            These comparisons do not claim that {config.brand.shortName} performed the treatments unless
-            source and usage rights explicitly support that statement. Prefer fewer authentic cases over
-            unverified imagery.
+            These comparisons do not claim that {config.brand.shortName} performed the treatments.
+            Source and usage-rights notes stay attached to each card so external gallery assets remain
+            clearly attributed.
           </p>
         </div>
       </section>

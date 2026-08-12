@@ -24,11 +24,11 @@ export function BeforeAfterComparison({
   const draggingRef = useRef(false)
   const [position, setPosition] = useState(50)
   const [dragging, setDragging] = useState(false)
+  const hasCompositeImage = hasRealImage(result.compositeImage)
 
   const showPlaceholders =
-    result.isPlaceholder ||
-    !hasRealImage(result.beforeImage) ||
-    !hasRealImage(result.afterImage)
+    !hasCompositeImage &&
+    (result.isPlaceholder || !hasRealImage(result.beforeImage) || !hasRealImage(result.afterImage))
 
   const updateFromClientX = useCallback((clientX: number) => {
     const el = trackRef.current
@@ -81,79 +81,94 @@ export function BeforeAfterComparison({
 
   return (
     <article className={`group ${className}`}>
-      <div
-        ref={trackRef}
-        className="before-after relative isolate overflow-hidden rounded-[1.5rem] select-none touch-none"
-        style={{ aspectRatio: aspect }}
-        onPointerDown={onPointerDown}
-        onPointerMove={onPointerMove}
-        onPointerUp={endDrag}
-        onPointerCancel={endDrag}
-      >
-        {/* After (base layer — full frame) */}
-        <div className="absolute inset-0">
-          <ResultFrame
-            side="after"
-            result={result}
-            showPlaceholder={showPlaceholders}
-            loading={loading}
-          />
-        </div>
-
-        {/* Before (clipped overlay) */}
+      {hasCompositeImage ? (
         <div
-          className="absolute inset-0 overflow-hidden will-change-[clip-path]"
-          style={{ clipPath: `inset(0 ${100 - position}% 0 0)` }}
-          aria-hidden
+          className="before-after relative isolate overflow-hidden rounded-[1.5rem]"
+          style={{ aspectRatio: aspect }}
         >
-          <ResultFrame
-            side="before"
-            result={result}
-            showPlaceholder={showPlaceholders}
-            loading={loading}
-          />
+          <CompositeResultFrame result={result} loading={loading} />
+          <span className="glass-medium pointer-events-none absolute left-3 top-3 z-20 rounded-full px-3 py-1 text-[0.65rem] uppercase tracking-[0.18em]">
+            Before/After
+          </span>
+          <span className="glass-medium pointer-events-none absolute right-3 top-3 z-20 rounded-full px-3 py-1 text-[0.65rem] uppercase tracking-[0.18em]">
+            Sourced Composite
+          </span>
         </div>
-
-        {/* Labels */}
-        <span className="glass-medium pointer-events-none absolute left-3 top-3 z-20 rounded-full px-3 py-1 text-[0.65rem] uppercase tracking-[0.18em]">
-          Before
-        </span>
-        <span className="glass-medium pointer-events-none absolute right-3 top-3 z-20 rounded-full px-3 py-1 text-[0.65rem] uppercase tracking-[0.18em]">
-          After
-        </span>
-
-        {/* Slider control */}
+      ) : (
         <div
-          className="pointer-events-none absolute inset-y-0 z-30 w-px bg-white/75 shadow-[0_0_14px_rgba(255,255,255,0.5)]"
-          style={{ left: `${position}%`, transform: 'translateX(-50%)' }}
-          aria-hidden
-        />
-        <div
-          role="slider"
-          tabIndex={0}
-          aria-valuemin={0}
-          aria-valuemax={100}
-          aria-valuenow={Math.round(position)}
-          aria-valuetext={`${Math.round(position)}% before visible`}
-          aria-controls={sliderId}
-          aria-label={`Compare before and after for ${result.treatment}`}
-          className={`pointer-events-auto absolute top-1/2 z-40 flex size-11 -translate-x-1/2 -translate-y-1/2 cursor-ew-resize items-center justify-center rounded-full outline-none transition duration-200 ${
-            dragging ? 'scale-105' : 'hover:scale-105'
-          } glass-strong glass-reflect`}
-          style={{ left: `${position}%` }}
-          onKeyDown={onKeyDown}
-          onPointerDown={(e) => {
-            e.stopPropagation()
-            onPointerDown(e)
-          }}
+          ref={trackRef}
+          className="before-after relative isolate overflow-hidden rounded-[1.5rem] select-none touch-none"
+          style={{ aspectRatio: aspect }}
+          onPointerDown={onPointerDown}
+          onPointerMove={onPointerMove}
+          onPointerUp={endDrag}
+          onPointerCancel={endDrag}
         >
-          <GripVertical className="size-4 text-espresso/80" aria-hidden />
-        </div>
+          {/* After (base layer — full frame) */}
+          <div className="absolute inset-0">
+            <ResultFrame
+              side="after"
+              result={result}
+              showPlaceholder={showPlaceholders}
+              loading={loading}
+            />
+          </div>
 
-        <span id={sliderId} className="sr-only">
-          Drag or use arrow keys to reveal before versus after imagery for {result.treatment}.
-        </span>
-      </div>
+          {/* Before (clipped overlay) */}
+          <div
+            className="absolute inset-0 overflow-hidden will-change-[clip-path]"
+            style={{ clipPath: `inset(0 ${100 - position}% 0 0)` }}
+            aria-hidden
+          >
+            <ResultFrame
+              side="before"
+              result={result}
+              showPlaceholder={showPlaceholders}
+              loading={loading}
+            />
+          </div>
+
+          {/* Labels */}
+          <span className="glass-medium pointer-events-none absolute left-3 top-3 z-20 rounded-full px-3 py-1 text-[0.65rem] uppercase tracking-[0.18em]">
+            Before
+          </span>
+          <span className="glass-medium pointer-events-none absolute right-3 top-3 z-20 rounded-full px-3 py-1 text-[0.65rem] uppercase tracking-[0.18em]">
+            After
+          </span>
+
+          {/* Slider control */}
+          <div
+            className="pointer-events-none absolute inset-y-0 z-30 w-px bg-white/75 shadow-[0_0_14px_rgba(255,255,255,0.5)]"
+            style={{ left: `${position}%`, transform: 'translateX(-50%)' }}
+            aria-hidden
+          />
+          <div
+            role="slider"
+            tabIndex={0}
+            aria-valuemin={0}
+            aria-valuemax={100}
+            aria-valuenow={Math.round(position)}
+            aria-valuetext={`${Math.round(position)}% before visible`}
+            aria-controls={sliderId}
+            aria-label={`Compare before and after for ${result.treatment}`}
+            className={`pointer-events-auto absolute top-1/2 z-40 flex size-11 -translate-x-1/2 -translate-y-1/2 cursor-ew-resize items-center justify-center rounded-full outline-none transition duration-200 ${
+              dragging ? 'scale-105' : 'hover:scale-105'
+            } glass-strong glass-reflect`}
+            style={{ left: `${position}%` }}
+            onKeyDown={onKeyDown}
+            onPointerDown={(e) => {
+              e.stopPropagation()
+              onPointerDown(e)
+            }}
+          >
+            <GripVertical className="size-4 text-espresso/80" aria-hidden />
+          </div>
+
+          <span id={sliderId} className="sr-only">
+            Drag or use arrow keys to reveal before versus after imagery for {result.treatment}.
+          </span>
+        </div>
+      )}
 
       <div className="mt-4 space-y-2 px-0.5">
         <div className="flex flex-wrap items-baseline justify-between gap-2">
@@ -240,6 +255,39 @@ function ResultFrame({
         srcSet={srcSet}
         sizes={result.sizes ?? '(max-width: 768px) 100vw, 50vw'}
         alt={alt}
+        width={result.width}
+        height={result.height}
+        loading={loading}
+        decoding="async"
+        draggable={false}
+        className="h-full w-full object-cover object-center"
+      />
+    </picture>
+  )
+}
+
+function CompositeResultFrame({
+  result,
+  loading,
+}: {
+  result: ResultItem
+  loading: 'lazy' | 'eager'
+}) {
+  if (!result.compositeImage) return null
+
+  return (
+    <picture>
+      {result.compositeImageAvif ? (
+        <source type="image/avif" srcSet={result.compositeImageAvif} sizes={result.sizes} />
+      ) : null}
+      {result.compositeImageWebp ? (
+        <source type="image/webp" srcSet={result.compositeImageWebp} sizes={result.sizes} />
+      ) : null}
+      <img
+        src={result.compositeImage}
+        srcSet={result.compositeImageSrcSet}
+        sizes={result.sizes ?? '(max-width: 768px) 100vw, 50vw'}
+        alt={result.altComposite ?? `${result.treatment} sourced before-and-after composite`}
         width={result.width}
         height={result.height}
         loading={loading}

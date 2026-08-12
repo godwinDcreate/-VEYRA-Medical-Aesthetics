@@ -126,17 +126,27 @@ export interface ResultItem {
   description: string
   beforeImage: string
   afterImage: string
+  /**
+   * Optional single-image before/after composite sourced from an external gallery.
+   * Use this when the public source publishes one labeled comparison image instead
+   * of separate before/after files.
+   */
+  compositeImage?: string
   /** Optional AVIF/WebP for progressive enhancement when real assets exist */
   beforeImageAvif?: string
   beforeImageWebp?: string
   afterImageAvif?: string
   afterImageWebp?: string
+  compositeImageAvif?: string
+  compositeImageWebp?: string
   /** Responsive srcSet when optimized assets are available */
   beforeImageSrcSet?: string
   afterImageSrcSet?: string
+  compositeImageSrcSet?: string
   sizes?: string
   altBefore: string
   altAfter: string
+  altComposite?: string
   /** Attribution / licensing — stored in config, not hardcoded in UI copy logic */
   source: string
   sourceUrl?: string
