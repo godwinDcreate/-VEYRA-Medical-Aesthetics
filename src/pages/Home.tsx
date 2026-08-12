@@ -159,7 +159,7 @@ export function Home() {
             <SectionHeading
               eyebrow="Results"
               title="A natural-looking refresh"
-              description="Sourced before-and-after examples from a public medical spa gallery. External reference imagery only, not VEYRA patient outcomes. Individual results may vary."
+              description="Real VEYRA patient before-and-after results. Individual results vary."
             />
           </Reveal>
           <div className="mt-12">

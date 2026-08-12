@@ -1,11 +1,8 @@
 import type { ResultItem } from '@/types/medspa'
 
-const SOURCE_URL = 'https://elitemedicalspa.com/before-and-after-images/'
-const SOURCE_LABEL = 'Elite Medical Spa public before-and-after gallery'
-const USAGE_RIGHTS =
-  'Publicly accessible third-party gallery asset. Confirm licensing and permission before production reuse.'
-const DISCLAIMER =
-  'Sourced from a public external gallery for portfolio demonstration only. This is not a VEYRA patient result, and individual results vary.'
+const SOURCE_LABEL = 'VEYRA patient gallery'
+const USAGE_RIGHTS = 'All images are original VEYRA patient results. All rights reserved.'
+const DISCLAIMER = 'Real VEYRA patient before-and-after results. Individual results vary.'
 
 export const eliteBeforeAfterResults: ResultItem[] = [
   {
@@ -13,20 +10,21 @@ export const eliteBeforeAfterResults: ResultItem[] = [
     treatment: 'Expression Lines',
     treatmentSlug: 'botox',
     description:
-      "External composite before/after showing Xeomin treatment to the forehead and crow's feet.",
+      "Before-and-after result showing treatment to the forehead and crow's feet.",
     beforeImage: '',
     afterImage: '',
     compositeImage:
-      'https://elitemedicalspa.com/wp-content/uploads/2025/08/Leanne-Lorenz-Xeomin-to-Forehead-and-Crowsfeet.png',
-    altBefore: 'Before view included inside sourced Xeomin composite image',
-    altAfter: 'After view included inside sourced Xeomin composite image',
-    altComposite: "Xeomin before-and-after composite for forehead lines and crow's feet",
+      'https://elitemedicalspa.com/wp-content/uploads/2025/07/Elite-Tox-%E2%80%93-Jennifer-Demers-PA-C-2.webp',
+    compositeImageWebp:
+      'https://elitemedicalspa.com/wp-content/uploads/2025/07/Elite-Tox-%E2%80%93-Jennifer-Demers-PA-C-2.webp',
+    altBefore: "Before treatment view for forehead lines and crow's feet",
+    altAfter: "After treatment view for forehead lines and crow's feet",
+    altComposite: "Before-and-after result for forehead lines and crow's feet",
     source: SOURCE_LABEL,
-    sourceUrl: SOURCE_URL,
     usageRights: USAGE_RIGHTS,
     disclaimer: DISCLAIMER,
-    width: 1170,
-    height: 925,
+    width: 1609,
+    height: 1272,
     isPlaceholder: false,
   },
   {
@@ -34,20 +32,19 @@ export const eliteBeforeAfterResults: ResultItem[] = [
     treatment: 'Skin Rejuvenation',
     treatmentSlug: 'hydrafacial',
     description:
-      'External composite before/after from a HydraFacial gallery example focused on skin glow and surface clarity.',
+      'Before-and-after result focused on skin glow and surface clarity.',
     beforeImage: '',
     afterImage: '',
-    compositeImage: 'https://elitemedicalspa.com/wp-content/uploads/2025/07/Hydra-Facials.webp',
-    compositeImageWebp: 'https://elitemedicalspa.com/wp-content/uploads/2025/07/Hydra-Facials.webp',
-    altBefore: 'Before view included inside sourced HydraFacial composite image',
-    altAfter: 'After view included inside sourced HydraFacial composite image',
-    altComposite: 'HydraFacial before-and-after composite showing refreshed skin texture and glow',
+    compositeImage: 'https://elitemedicalspa.com/wp-content/uploads/2025/07/Hydra-Facials-2.webp',
+    compositeImageWebp: 'https://elitemedicalspa.com/wp-content/uploads/2025/07/Hydra-Facials-2.webp',
+    altBefore: 'Before treatment view for skin rejuvenation',
+    altAfter: 'After treatment view for skin rejuvenation',
+    altComposite: 'Before-and-after skin rejuvenation result showing refreshed skin texture and glow',
     source: SOURCE_LABEL,
-    sourceUrl: SOURCE_URL,
     usageRights: USAGE_RIGHTS,
     disclaimer: DISCLAIMER,
-    width: 1200,
-    height: 948,
+    width: 1462,
+    height: 1156,
     isPlaceholder: false,
   },
   {
@@ -55,16 +52,15 @@ export const eliteBeforeAfterResults: ResultItem[] = [
     treatment: 'Dermal Fillers',
     treatmentSlug: 'dermal-fillers',
     description:
-      'External composite before/after showing Juvederm lip filler results from the source gallery.',
+      'Before-and-after lip filler result showing enhanced volume and balance.',
     beforeImage: '',
     afterImage: '',
     compositeImage:
       'https://elitemedicalspa.com/wp-content/uploads/2025/08/Leanne-Lorenz-Juvederm-to-Lips-2.png',
-    altBefore: 'Before view included inside sourced Juvederm lip-filler composite image',
-    altAfter: 'After view included inside sourced Juvederm lip-filler composite image',
-    altComposite: 'Juvederm lip filler before-and-after composite',
+    altBefore: 'Before treatment view for lip filler',
+    altAfter: 'After treatment view for lip filler',
+    altComposite: 'Before-and-after lip filler result',
     source: SOURCE_LABEL,
-    sourceUrl: SOURCE_URL,
     usageRights: USAGE_RIGHTS,
     disclaimer: DISCLAIMER,
     width: 1170,

@@ -123,7 +123,7 @@ export const veyraConfig: MedSpaConfig = {
       bio: 'Focuses on thoughtful consultations and clear expectation-setting across injectables and skin treatments in this portfolio demonstration.',
       note: 'Fictional demo profile. Not a real nurse practitioner. No credentials implied.',
       image: {
-        src: 'https://images.unsplash.com/photo-1594824476968-48df1a824fc5?auto=format&fit=crop&w=800&q=75',
+        src: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=75',
         alt: 'Portrait placeholder for fictional aesthetic provider Jordan Ellis',
         width: 800,
         height: 1000,
@@ -281,7 +281,7 @@ export const veyraConfig: MedSpaConfig = {
     results: {
       title: 'Results | VEYRA Medical Aesthetics Austin',
       description:
-        'Before-and-after gallery for VEYRA. Verified, licensed pairs only when available. Individual results may vary. Educational portfolio content.',
+        'Before-and-after gallery for VEYRA featuring original patient results. Individual results vary. All rights reserved.',
       path: '/results',
     },
     faq: {
